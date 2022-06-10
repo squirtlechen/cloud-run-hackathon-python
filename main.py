@@ -33,31 +33,31 @@ def move():
     request.get_data()
     logger.info(request.json)
     myself = request.json['_links']['self']['href']
-    my_x = request.json['arena']['state'][myself]['x']
-    my_y = request.json['arena']['state'][myself]['y']
-    my_direction = request.json['arena']['state'][myself]['direction']
+    # my_x = request.json['arena']['state'][myself]['x']
+    # my_y = request.json['arena']['state'][myself]['y']
+    # my_direction = request.json['arena']['state'][myself]['direction']
 
-    # attack
-    for player in request.json['arena']['state']:
-        if player != myself:
-            player_x = request.json['arena']['state'][player]['x']
-            player_y = request.json['arena']['state'][player]['y']
-            diff_x = player_x - my_x
-            diff_y = player_y - my_y
-            if my_direction == 'N' and diff_x == 0 and 0 < diff_y <=3 :
-                logger.info('attack')
-                return  'T'
-            elif my_direction == 'S' and diff_x == 0 and -3 <= diff_y < 0:
-                logger.info('attack')
-                return  'T' 
-            elif my_direction == 'W' and diff_y == 0 and -3 <= diff_x < 0:
-                logger.info('attack')
-                return  'T'  
-            elif my_direction == 'E' and diff_y == 0 and 0 < diff_x <=3:
-                logger.info('attack')
-                return  'T' 
+    # # attack
+    # for player in request.json['arena']['state']:
+    #     if player != myself:
+    #         player_x = request.json['arena']['state'][player]['x']
+    #         player_y = request.json['arena']['state'][player]['y']
+    #         diff_x = player_x - my_x
+    #         diff_y = player_y - my_y
+    #         if my_direction == 'N' and diff_x == 0 and 0 < diff_y <= 3 :
+    #             logger.info('attack')
+    #             return  'T'
+    #         elif my_direction == 'S' and diff_x == 0 and -3 <= diff_y < 0:
+    #             logger.info('attack')
+    #             return  'T' 
+    #         elif my_direction == 'W' and diff_y == 0 and -3 <= diff_x < 0:
+    #             logger.info('attack')
+    #             return  'T'  
+    #         elif my_direction == 'E' and diff_y == 0 and 0 < diff_x <=3:
+    #             logger.info('attack')
+    #             return  'T' 
     logger.info('move')                        
-    return random.choice(['F', 'L', 'R'])
+    return random.choice(['F','F','F','R'])
 
 if __name__ == "__main__":
   app.run(debug=False,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))

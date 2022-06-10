@@ -32,9 +32,10 @@ def index():
 def move():
     request.get_data()
     logger.info(request.json)
-    x = request.json['state']['x']
-    y = request.json['state']['y']
-    logger.info(x,y)
+    my_x = request.json['arena']['state']['https://squirtlefire-mllc3dma5q-uc.a.run.app']['x']
+    my_y = request.json['arena']['state']['https://squirtlefire-mllc3dma5q-uc.a.run.app']['y']
+
+    logger.info(my_x,my_y)
     return moves[random.randrange(3)]
 
 if __name__ == "__main__":

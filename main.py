@@ -36,38 +36,24 @@ def move():
     my_y = request.json['arena']['state']['https://squirtlefire-mllc3dma5q-uc.a.run.app']['y']
     my_direction = request.json['arena']['state']['https://squirtlefire-mllc3dma5q-uc.a.run.app']['direction']
 
-    if my_direction == 'N':
-        for player in request.json['arena']['state']:
-            if player != 'https://squirtlefire-mllc3dma5q-uc.a.run.app':
-                player_x = request.json['arena']['state'][player]['x']
-                player_y = request.json['arena']['state'][player]['y']
-                if player_x == my_x and player_y - my_y <=3:
-                    return  'T'
-
-    if my_direction == 'S':
-        for player in request.json['arena']['state']:
-            if player != 'https://squirtlefire-mllc3dma5q-uc.a.run.app':
-                player_x = request.json['arena']['state'][player]['x']
-                player_y = request.json['arena']['state'][player]['y']
-                if player_x == my_x and my_y - player_y <=3:
-                    return  'T'
-    
-    if my_direction == 'W':
-        for player in request.json['arena']['state']:
-            if player != 'https://squirtlefire-mllc3dma5q-uc.a.run.app':
-                player_x = request.json['arena']['state'][player]['x']
-                player_y = request.json['arena']['state'][player]['y']
-                if player_y == my_y and my_x - player_x <=3:
-                    return  'T'
-    
-    if my_direction == 'E':
-        for player in request.json['arena']['state']:
-            if player != 'https://squirtlefire-mllc3dma5q-uc.a.run.app':
-                player_x = request.json['arena']['state'][player]['x']
-                player_y = request.json['arena']['state'][player]['y']
-                if player_y == my_y and player_x - my_x <=3:
-                    return  'T'
-
+    # attack
+    for player in request.json['arena']['state']:
+        if player != 'https://squirtlefire-mllc3dma5q-uc.a.run.app':
+            player_x = request.json['arena']['state'][player]['x']
+            player_y = request.json['arena']['state'][player]['y']
+            if my_direction == 'N' and player_x == my_x and player_y - my_y <=3:
+                logger.info('attack')
+                return  'T'
+            elif my_direction == 'S' and player_x == my_x and my_y - player_y <=3:
+                logger.info('attack')
+                return  'T' 
+            elif my_direction == 'W' and player_y == my_y and my_x - player_x <=3:
+                logger.info('attack')
+                return  'T'  
+            elif my_direction == 'E' and player_y == my_y and player_x - my_x <=3:
+                logger.info('attack')
+                return  'T' 
+    logger.info('move')                        
     return random.choice(['F', 'L', 'R'])
 
 if __name__ == "__main__":

@@ -42,16 +42,18 @@ def move():
         if player != myself:
             player_x = request.json['arena']['state'][player]['x']
             player_y = request.json['arena']['state'][player]['y']
-            if my_direction == 'N' and player_x == my_x and player_y - my_y <=3:
+            diff_x = player_x - my_x
+            diff_y = player_y - my_y
+            if my_direction == 'N' and diff_x == 0 and 0 < diff_y <=3 :
                 logger.info('attack')
                 return  'T'
-            elif my_direction == 'S' and player_x == my_x and my_y - player_y <=3:
+            elif my_direction == 'S' and diff_x == 0 and -3 <= diff_y < 0:
                 logger.info('attack')
                 return  'T' 
-            elif my_direction == 'W' and player_y == my_y and my_x - player_x <=3:
+            elif my_direction == 'W' and diff_y == 0 and -3 <= diff_x < 0:
                 logger.info('attack')
                 return  'T'  
-            elif my_direction == 'E' and player_y == my_y and player_x - my_x <=3:
+            elif my_direction == 'E' and diff_y == 0 and 0 < diff_x <=3:
                 logger.info('attack')
                 return  'T' 
     logger.info('move')                        

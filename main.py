@@ -35,7 +35,8 @@ def move():
     my_x = request.json['arena']['state']['https://squirtlefire-mllc3dma5q-uc.a.run.app']['x']
     my_y = request.json['arena']['state']['https://squirtlefire-mllc3dma5q-uc.a.run.app']['y']
 
-    logger.info(my_x,my_y)
+    logger.info(str(my_x))
+    logger.info(str(my_y))
     return moves[random.randrange(3)]
 
 if __name__ == "__main__":

@@ -38,29 +38,29 @@ def move():
 
     if my_direction == 'N':
         for player in request.json['arena']['state']:
-            player_x = player['x']
-            player_y = player['y']
+            player_x = request.json['arena']['state'][player]['x']
+            player_y = request.json['arena']['state'][player]['y']
             if player_x == my_x and player_y - my_y <=3:
                 return  'T'
 
     if my_direction == 'S':
         for player in request.json['arena']['state']:
-            player_x = player['x']
-            player_y = player['y']
+            player_x = request.json['arena']['state'][player]['x']
+            player_y = request.json['arena']['state'][player]['y']
             if player_x == my_x and my_y - player_y <=3:
                 return  'T'
     
     if my_direction == 'W':
         for player in request.json['arena']['state']:
-            player_x = player['x']
-            player_y = player['y']
+            player_x = request.json['arena']['state'][player]['x']
+            player_y = request.json['arena']['state'][player]['y']
             if player_y == my_y and my_x - player_x <=3:
                 return  'T'
     
     if my_direction == 'E':
         for player in request.json['arena']['state']:
-            player_x = player['x']
-            player_y = player['y']
+            player_x = request.json['arena']['state'][player]['x']
+            player_y = request.json['arena']['state'][player]['y']
             if player_y == my_y and player_x - my_x <=3:
                 return  'T'
 

@@ -32,13 +32,14 @@ def index():
 def move():
     request.get_data()
     logger.info(request.json)
-    my_x = request.json['arena']['state']['https://squirtlefire-mllc3dma5q-uc.a.run.app']['x']
-    my_y = request.json['arena']['state']['https://squirtlefire-mllc3dma5q-uc.a.run.app']['y']
-    my_direction = request.json['arena']['state']['https://squirtlefire-mllc3dma5q-uc.a.run.app']['direction']
+    myself = request.json['_links']['self']['href']
+    my_x = request.json['arena']['state'][myself]['x']
+    my_y = request.json['arena']['state'][myself]['y']
+    my_direction = request.json['arena']['state'][myself]['direction']
 
     # attack
     for player in request.json['arena']['state']:
-        if player != 'https://squirtlefire-mllc3dma5q-uc.a.run.app':
+        if player != myself:
             player_x = request.json['arena']['state'][player]['x']
             player_y = request.json['arena']['state'][player]['y']
             if my_direction == 'N' and player_x == my_x and player_y - my_y <=3:

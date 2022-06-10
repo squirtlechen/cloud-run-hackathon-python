@@ -32,6 +32,9 @@ def index():
 def move():
     request.get_data()
     logger.info(request.json)
+    x = request.json['state']['x']
+    y = request.json['state']['y']
+    logger.info(x,y)
     return moves[random.randrange(3)]
 
 if __name__ == "__main__":
